@@ -17,6 +17,8 @@ const char *ptr;
 
 char *str;
 
+char c;
+
 va_start(args, format);
 for (ptr = format; *ptr != '\0'; ptr++)
 {
@@ -26,7 +28,8 @@ ptr++;
 switch (*ptr)
 {
 case 'c':
-count += write(1, va_arg(args, int), 1);
+c = (char)va_arg(args, int);
+count += write(1, &c, 1);
 break;
 case 's':
 str = va_arg(args, char *);
