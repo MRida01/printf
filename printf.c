@@ -39,6 +39,9 @@ case 'd':
 case 'i':
 print_int(va_arg(args, int));
 break;
+case 'b':
+print_binary(va_arg(args, unsigned int));
+break;
 case '%':
 count += write(1, "%", 1);
 break;
@@ -98,4 +101,16 @@ num /= 10;
 while (i > 0) {
 write(1, &buffer[--i], 1);
 }
+}
+void print_binary(unsigned int num)
+{
+int i;
+
+char binary_digits[64];
+for (i = 64 - 1; i >= 0; i--)
+{
+binary_digits[i] = '0' + (num & 1);
+num >>= 1;
+}
+write(1, binary_digits, 64);
 }
