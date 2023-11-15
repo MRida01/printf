@@ -35,6 +35,10 @@ if (str == NULL)
 str = "(null)";
 count += write(1, str, _strlen(str));
 break;
+case 'd':
+case 'i':
+print_int(va_arg(args, int));
+break;
 case '%':
 count += write(1, "%", 1);
 break;
@@ -65,4 +69,29 @@ while (str[length] != '\0')
 length++;
 }
 return (length);
+}
+void print_int(int num)
+{
+char buffer[12];
+
+int i = 0;
+
+if (num == 0)
+{
+write(1, "0", 1);
+return;
+}
+if (num < 0)
+{
+write(1, "-", 1);
+num = -num;
+}
+while (num != 0)
+{
+buffer[i++] = '0' + num % 10;
+num /= 10;
+}
+while (i > 0) {
+write(1, &buffer[--i], 1);
+}
 }
