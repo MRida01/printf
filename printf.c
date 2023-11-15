@@ -70,9 +70,13 @@ length++;
 }
 return (length);
 }
+/**
+ * print_int - prints an integer
+ * @num: integer to print
+ */
 void print_int(int num)
 {
-char buffer[12];
+char buffer[15];
 
 int i = 0;
 
