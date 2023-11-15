@@ -15,9 +15,7 @@ int count = 0;
 
 const char *ptr;
 
-char *str;
-
-char c;
+char *str, c;
 
 va_start(args, format);
 for (ptr = format; *ptr != '\0'; ptr++)
@@ -41,8 +39,7 @@ case '%':
 count += write(1, "%", 1);
 break;
 default:
-count += write(1, "%", 1);
-count += write(1, &(*ptr), 1);
+count += write(1, "%", 1) + write(1, ptr, 1);
 break;
 }
 }
@@ -67,5 +64,5 @@ while (str[length] != '\0')
 {
 length++;
 }
-return length;
+return (length);
 }
